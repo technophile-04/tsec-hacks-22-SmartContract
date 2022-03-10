@@ -5,7 +5,27 @@ import "hardhat/console.sol";
 
 contract AcademicBankOfCredit {
 
+
+
     enum Applied{notApplied,pending,Approved,rejected}
+
+    struct PendingStudents {
+        string stuName;
+        string courseName;
+        uint courseCredits;
+    }
+
+    struct UniversityOutput {
+        address uniAdrrss;
+        string uniName;
+        uint departCount;
+    }
+
+    struct PendingStudentsOutput {
+        string name;
+        address studAddr;
+        uint totalCredits;
+    }
 
     struct Department {
         string name;
@@ -97,6 +117,102 @@ contract AcademicBankOfCredit {
         listOfStuAddr.push(msg.sender);
 
     }
+
+
+    // Get all universtiy
+    function getUniversities() public view  returns(UniversityOutput[] memory){
+        UniversityOutput[] memory allUniversites = new UniversityOutput[](listOfUniAddr.length);
+        uint count = 0;
+
+
+        for(uint i = 0; i < listOfUniAddr.length; i++){
+            allUniversites[count].uniAdrrss = listOfUniAddr[i];
+            allUniversites[count].uniName = universites[listOfUniAddr[i]].name;
+            allUniversites[count].departCount = universites[listOfUniAddr[i]].departCount;
+            count++;
+        }
+
+        return allUniversites;
+
+    }
+
+    // getUniversityCourse course
+    function getUniversityCourse(address univAddress) public view returns(Course[] memory){
+        Course[] memory allUnvCourses = new Course[](16);
+        uint count = 0;        
+        for(uint i = 0; i < listOfUniAddr.length; i++){
+
+            for(uint j = 0; j < universites[univAddress].departments[i].courseCount; j++) {
+                allUnvCourses[count] = universites[univAddress].departments[i].courses[j];
+                count++;
+            }
+
+        }
+
+        return allUnvCourses;
+    }   
+
+    //user details
+    function getUserDetails(address studAddr) public view returns(address ,
+        address ,
+        string memory ,
+        uint ,
+        string memory ,
+        uint ){
+
+        return (students[studAddr].univAddress,studAddr, students[studAddr].studentName, students[studAddr].currentYear, students[studAddr].departmentName, students[studAddr].totalCredits);
+    }
+
+
+    // function request course credit 
+    function requestCourseCred(string memory courseName) public {
+
+        Student storage s1 = students[msg.sender];
+
+        for(uint i = 0; i < s1.inCompleteCount; i++){
+            if(stringsEquals(s1.inCompleteCourses[i].courseName ,courseName)){
+                Course storage c1 = s1.pendingCourses[s1.pendingCourseCount];
+                s1.pendingCourseCount++;
+                c1.courseName = s1.inCompleteCourses[i].courseName;
+                c1.maxCredit = s1.inCompleteCourses[i].maxCredit;
+                c1.year = s1.inCompleteCourses[i].year;
+                delete s1.inCompleteCourses[i];
+                s1.inCompleteCount--;
+                break;
+            }
+        }
+        
+    }
+
+
+    function pendingCoursesCred() public view returns(PendingStudents[] memory) {
+        PendingStudents[] memory pendingStudents= new PendingStudents[](20);
+        uint count = 0;   
+
+        for(uint i = 0 ; i < listOfStuAddr.length; i++){
+            if(students[listOfStuAddr[i]].univAddress == msg.sender){
+                for(uint j = 0 ; j < students[listOfStuAddr[i]].pendingCourseCount; i++){
+                    pendingStudents[count].stuName = students[listOfStuAddr[i]].studentName;
+                    pendingStudents[count].courseName = students[listOfStuAddr[i]].pendingCourses[j].courseName;
+                    pendingStudents[count].courseCredits =students[listOfStuAddr[i]].pendingCourses[j].maxCredit;
+                    count++;
+                }
+            }
+        }
+
+        return pendingStudents;
+
+    }
+
+
+    //  accept student
+    function AcceptCourseCred() public {
+
+    }
+
+
+
+
 
 
 }
