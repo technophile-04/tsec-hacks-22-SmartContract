@@ -76,17 +76,317 @@ contract AcademicBankOfCredit {
     address[] listOfStuAddr;
 
     function addUniversity(string memory _name)  public{
-        University storage u1 = universites[msg.sender];
-        u1.name = _name;
-        u1.univAddress = msg.sender;
-        Department storage d1 = u1.departments[u1.departCount];
-        u1.departCount++;
-        d1.name = "IT";
-        Course storage c1 = d1.courses[d1.courseCount];
+        University storage u11 = universites[msg.sender];
+        u11.name = _name;
+        u11.univAddress = msg.sender;
+        Department storage d1 = u11.departments[u11.departCount];
+        u11.departCount++;
+        d1.name = "Information Technology";
+        Course storage c11 = d1.courses[d1.courseCount];
         d1.courseCount++;
-        c1.courseName="CHEM";
-        c1.maxCredit=5;
-        c1.year= 1;
+        c11.courseName="CHEM";
+        c11.maxCredit=4;
+        c11.year= 1;
+
+        // Course storage c12 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c12.courseName="PHY";
+        // c12.maxCredit=4;
+        // c12.year= 1;
+        
+        // Course storage c13 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c13.courseName="MATHS";
+        // c13.maxCredit=5;
+        // c13.year= 1; 
+
+        Course storage c21 = d1.courses[d1.courseCount];
+        d1.courseCount++;
+        c21.courseName="JPL";
+        c21.maxCredit=5;
+        c21.year= 2;
+        
+        // Course storage c22 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c22.courseName="CN";
+        // c22.maxCredit=4;
+        // c22.year= 2; 
+
+        // Course storage c23 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c23.courseName="Formal language and automata theory";
+        // c23.maxCredit=5;
+        // c23.year= 2;
+
+        Course storage c31 = d1.courses[d1.courseCount];
+        d1.courseCount++;
+        c31.courseName="Cryptography and Network Security";
+        c31.maxCredit=4;
+        c31.year= 3;
+        
+        // Course storage c32 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c32.courseName="Soft Computing";
+        // c32.maxCredit=5;
+        // c32.year= 3; 
+
+        // Course storage c33 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c33.courseName="Parallel and Distributed Computing";
+        // c33.maxCredit=5;
+        // c33.year= 3;
+
+        Course storage c41 = d1.courses[d1.courseCount];
+        d1.courseCount++;
+        c41.courseName="Mobile Application Development";
+        c41.maxCredit=4;
+        c41.year= 4;
+
+        Course storage c42 = d1.courses[d1.courseCount];
+        d1.courseCount++;
+        c42.courseName="Cyber Security and Laws";
+        c42.maxCredit=4;
+        c42.year= 4; 
+
+        // Course storage c43 = d1.courses[d1.courseCount];
+        // d1.courseCount++;
+        // c43.courseName="User Interaction Design";
+        // c43.maxCredit=5;
+        // c43.year= 4;
+
+        // University storage u12 = universites[msg.sender];
+        // u12.name = _name;
+        // u12.univAddress = msg.sender;
+        Department storage d2 = u11.departments[u11.departCount];
+        u11.departCount++;
+        d2.name = "Computer Science";
+        c11 = d2.courses[d2.courseCount];
+        d2.courseCount++;
+        c11.courseName="CHEM";
+        c11.maxCredit=4;
+        c11.year= 1;
+
+        // c12 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c12.courseName="PHY";
+        // c12.maxCredit=4;
+        // c12.year= 1;
+        
+        // c13 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c13.courseName="MATHS";
+        // c13.maxCredit=5;
+        // c13.year= 1; 
+
+        c21 = d2.courses[d2.courseCount];
+        d2.courseCount++;
+        c21.courseName="JPL";
+        c21.maxCredit=5;
+        c21.year= 2;
+        
+        // c22 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c22.courseName="OS";
+        // c22.maxCredit=4;
+        // c22.year= 2; 
+
+        // c23 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c23.courseName="Database Management System";
+        // c23.maxCredit=5;
+        // c23.year= 2;
+
+        c31 = d2.courses[d2.courseCount];
+        d2.courseCount++;
+        c31.courseName="Data Mining and Warehouse";
+        c31.maxCredit=4;
+        c31.year= 3;
+        
+        // c32 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c32.courseName="Artificial Intelligence";
+        // c32.maxCredit=5;
+        // c32.year= 3; 
+
+        // c33 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c33.courseName="Big Data Infrastructure";
+        // c33.maxCredit=5;
+        // c33.year= 3;
+
+        c41 = d2.courses[d2.courseCount];
+        d2.courseCount++;
+        c41.courseName="Digital Signal and Image Processing";
+        c41.maxCredit=4;
+        c41.year= 4;
+
+        // c42 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c42.courseName="Operation Research";
+        // c42.maxCredit=4;
+        // c42.year= 4; 
+
+        // c43 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c43.courseName="Adhoc Wireless Network";
+        // c43.maxCredit=5;
+        // c43.year= 4;
+
+        // University storage u13 = universites[msg.sender];
+        // u13.name = _name;
+        // u13.univAddress = msg.sender;
+        Department storage d3 = u11.departments[u11.departCount];
+        u11.departCount++;
+        d3.name = "Mechanical Engineering";
+        c11 = d3.courses[d3.courseCount];
+        d3.courseCount++;
+        c11.courseName="CHEM";
+        c11.maxCredit=4;
+        c11.year= 1;
+
+        // c12 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c12.courseName="PHY";
+        // c12.maxCredit=4;
+        // c12.year= 1;
+        
+        // c13 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c13.courseName="MATHS";
+        // c13.maxCredit=5;
+        // c13.year= 1; 
+
+        c21 = d3.courses[d3.courseCount];
+        d3.courseCount++;
+        c21.courseName="JPL";
+        c21.maxCredit=5;
+        c21.year= 2;
+        
+        // c22 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c22.courseName="OS";
+        // c22.maxCredit=4;
+        // c22.year= 2; 
+
+        // c23 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c23.courseName="Database Management System";
+        // c23.maxCredit=5;
+        // c23.year= 2;
+
+        c31 = d3.courses[d3.courseCount];
+        d3.courseCount++;
+        c31.courseName="Data Mining and Warehouse";
+        c31.maxCredit=4;
+        c31.year= 3;
+        
+        // c32 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c32.courseName="Artificial Intelligence";
+        // c32.maxCredit=5;
+        // c32.year= 3; 
+
+        // c33 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c33.courseName="Big Data Infrastructure";
+        // c33.maxCredit=5;
+        // c33.year= 3;
+
+        c41 = d3.courses[d3.courseCount];
+        d3.courseCount++;
+        c41.courseName="Digital Signal and Image Processing";
+        c41.maxCredit=4;
+        c41.year= 4;
+
+        // c42 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c42.courseName="Operation Research";
+        // c42.maxCredit=4;
+        // c42.year= 4; 
+
+        // c43 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c43.courseName="Adhoc Wireless Network";
+        // c43.maxCredit=5;
+        // c43.year= 4;
+
+        Department storage d4 = u11.departments[u11.departCount];
+        u11.departCount++;
+        d4.name = "Electronics Engineering";
+        c11 = d4.courses[d4.courseCount];
+        d4.courseCount++;
+        c11.courseName="CHEM";
+        c11.maxCredit=4;
+        c11.year= 1;
+
+        // c12 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c12.courseName="PHY";
+        // c12.maxCredit=4;
+        // c12.year= 1;
+        
+        // c13 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c13.courseName="MATHS";
+        // c13.maxCredit=5;
+        // c13.year= 1; 
+
+        c21 = d4.courses[d4.courseCount];
+        d4.courseCount++;
+        c21.courseName="Electronic Devices and Circuits - I";
+        c21.maxCredit=5;
+        c21.year= 2;
+        
+        // c22 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c22.courseName="OS";
+        // c22.maxCredit=4;
+        // c22.year= 2; 
+
+        // c23 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c23.courseName="Database Management System";
+        // c23.maxCredit=5;
+        // c23.year= 2;
+
+        c31 = d4.courses[d4.courseCount];
+        d4.courseCount++;
+        c31.courseName="Digital Signal Processing";
+        c31.maxCredit=4;
+        c31.year= 3;
+        
+        // c32 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c32.courseName="Artificial Intelligence";
+        // c32.maxCredit=5;
+        // c32.year= 3; 
+
+        // c33 = d2.courses[d2.courseCount];
+        // d2.courseCount++;
+        // c33.courseName="Big Data Infrastructure";
+        // c33.maxCredit=5;
+        // c33.year= 3;
+
+        c41 = d4.courses[d4.courseCount];
+        d4.courseCount++;
+        c41.courseName="MEMS Technology";
+        c41.maxCredit=4;
+        c41.year= 4;
+
+        // c42 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c42.courseName="Operation Research";
+        // c42.maxCredit=4;
+        // c42.year= 4; 
+
+        // c43 = d3.courses[d3.courseCount];
+        // d3.courseCount++;
+        // c43.courseName="Adhoc Wireless Network";
+        // c43.maxCredit=5;
+        // c43.year= 4;
+
+
+        
         listOfUniAddr.push(msg.sender);
     }
 
