@@ -9,6 +9,11 @@ contract AcademicBankOfCredit {
 
     enum Applied{notApplied,pending,Approved,rejected}
 
+    struct AppliedStudents{
+        string stuName;
+        address stuAddress;
+    }
+
     struct PendingStudents {
         string stuName;
         string courseName;
@@ -59,6 +64,8 @@ contract AcademicBankOfCredit {
         uint inCompleteCount;
         mapping(uint => Course) pendingCourses;
         uint pendingCourseCount;
+        string toUnivName;
+        address toUnviAddress;
         Applied status;
     }
 
@@ -163,6 +170,21 @@ contract AcademicBankOfCredit {
         return (students[studAddr].univAddress,studAddr, students[studAddr].studentName, students[studAddr].currentYear, students[studAddr].departmentName, students[studAddr].totalCredits);
     }
 
+    // getUser complete courses
+    function getCompletedCourses() public view returns(Course[] memory) {
+        Course[] memory completedCourses = new Course[](16);
+        uint count = 0;       
+        Student storage s1 = students[msg.sender];
+        for(uint i = 0; i < s1.completeCount; i++){
+            completedCourses[count].courseName = s1.completeCourses[i].courseName;
+            completedCourses[count].maxCredit = s1.completeCourses[i].maxCredit;
+            completedCourses[count].year = s1.completeCourses[i].year;
+            count++;
+        }
+
+        return completedCourses;
+    }
+
 
     // function request course credit 
     function requestCourseCred(string memory courseName) public {
@@ -206,13 +228,54 @@ contract AcademicBankOfCredit {
 
 
     //  accept student
-    function AcceptCourseCred() public {
+    function AcceptCourseCred(address stuAddress, string memory courseName) public {
+        Student storage s1 = students[stuAddress];
+        for(uint i = 0; i < s1.pendingCourseCount; i++){
+            if(stringsEquals(s1.pendingCourses[i].courseName , courseName)){
+                Course storage c1 = s1.completeCourses[s1.completeCount];
+                s1.completeCount++;
+                c1.courseName = s1.pendingCourses[i].courseName;
+                c1.maxCredit = s1.pendingCourses[i].maxCredit;
+                c1.year = s1.pendingCourses[i].year;
+                delete s1.pendingCourses[i];
+                s1.pendingCourseCount--;
+                break;
+            }
+        }
 
     }
 
 
+    function requestTransferUniversity(address _toUnivAddress) public {
+        Student storage s1 = students[msg.sender];
+        s1.toUnivName = universites[_toUnivAddress].name;
+        s1.toUnviAddress = _toUnivAddress;
+        s1.status = Applied.pending;
+    }
 
+    function transferUniversity(address studAddress) public {
+        Student storage s1 = students[studAddress];
+        s1.univAddress = msg.sender;
+        s1.toUnivName = "";
+        s1.status = Applied.Approved;
+    }
 
+    function appliedStudents() public view returns(AppliedStudents[] memory){
+        AppliedStudents[] memory appliedArray= new AppliedStudents[](20);
+        uint count  = 0;
+        for(uint i = 0; i < listOfStuAddr.length; i++){
+
+            if(stringsEquals(students[listOfStuAddr[i]].toUnivName, universites[msg.sender].name)){
+                appliedArray[count].stuName = students[listOfStuAddr[i]].studentName;
+                appliedArray[count].stuAddress = listOfStuAddr[i];
+                count++;
+            }   
+
+        }
+
+        return appliedArray;
+        
+    }
 
 
 }
